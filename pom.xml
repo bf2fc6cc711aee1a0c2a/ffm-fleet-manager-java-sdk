@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.redhat.services.ffm</groupId>
+  <artifactId>factorized-fleet-manager</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Factorized Fleet Manager</name>
+  <description>Parent module for factorized fleet manager</description>
+
+  <inceptionYear>2022</inceptionYear>
+  <organization>
+    <name>Red Hat</name>
+    <url>https://www.redhat.com/</url>
+  </organization>
+
+  <licenses>
+    <license>
+      <name>Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <modules>
+    <module>build-parent</module>
+    <module>bom</module>
+  </modules>
+
+</project>
