@@ -16,7 +16,41 @@
 
   <dependencyManagement>
     <dependencies>
-    <!-- Modules to be added here-->
+      <dependency>
+        <groupId>com.redhat.services.ffm</groupId>
+        <artifactId>ams-client</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.redhat.services.ffm</groupId>
+        <artifactId>ams-client</artifactId>
+        <version>${project.version}</version>
+        <classifier>sources</classifier>
+      </dependency>
+      <dependency>
+        <groupId>com.redhat.services.ffm</groupId>
+        <artifactId>ams-client</artifactId>
+        <version>${project.version}</version>
+        <classifier>javadoc</classifier>
+      </dependency>
+
+      <dependency>
+        <groupId>com.redhat.services.ffm</groupId>
+        <artifactId>ams-client-generator</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.redhat.services.ffm</groupId>
+        <artifactId>ams-client-generator</artifactId>
+        <version>${project.version}</version>
+        <classifier>sources</classifier>
+      </dependency>
+      <dependency>
+        <groupId>com.redhat.services.ffm</groupId>
+        <artifactId>ams-client-generator</artifactId>
+        <version>${project.version}</version>
+        <classifier>javadoc</classifier>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
