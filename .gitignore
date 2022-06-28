@@ -27,4 +27,4 @@ target/
 
 *.iml
 **/.idea
-**/.cache/
+.cache/
