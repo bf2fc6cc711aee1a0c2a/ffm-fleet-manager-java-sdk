@@ -45,9 +45,6 @@
     <jersey.version>2.35</jersey.version>
     <jackson.version>2.13.0</jackson.version>
     <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
-    <http-signature.version>1.4</http-signature.version>
-    <scribejava.version>6.9.0</scribejava.version>
-    <reactivex.version>1.3.8</reactivex.version>
 
     <formatter.skip>false</formatter.skip>
     <formatter.goal>format</formatter.goal>
@@ -110,21 +107,6 @@
         <groupId>org.openapitools</groupId>
         <artifactId>jackson-databind-nullable</artifactId>
         <version>${jackson-databind-nullable.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.github.scribejava</groupId>
-        <artifactId>scribejava-apis</artifactId>
-        <version>${scribejava.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.tomitribe</groupId>
-        <artifactId>tomitribe-http-signatures</artifactId>
-        <version>${http-signature.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.reactivex</groupId>
-        <artifactId>rxjava</artifactId>
-        <version>${reactivex.version}</version>
       </dependency>
       <dependency>
         <groupId>com.google.code.findbugs</groupId>

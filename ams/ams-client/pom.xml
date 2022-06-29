@@ -55,19 +55,6 @@
       <groupId>org.openapitools</groupId>
       <artifactId>jackson-databind-nullable</artifactId>
     </dependency>
-    <dependency>
-      <groupId>com.github.scribejava</groupId>
-      <artifactId>scribejava-apis</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.tomitribe</groupId>
-      <artifactId>tomitribe-http-signatures</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>io.reactivex</groupId>
-      <artifactId>rxjava</artifactId>
-    </dependency>
 
     <dependency>
       <groupId>com.redhat.services.ffm</groupId>

@@ -14,7 +14,6 @@
 
   <dependencies>
     <!-- dependencies are needed for the client being generated -->
-
     <dependency>
       <groupId>io.swagger</groupId>
       <artifactId>swagger-annotations</artifactId>
@@ -54,20 +53,6 @@
     <dependency>
       <groupId>org.openapitools</groupId>
       <artifactId>jackson-databind-nullable</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.github.scribejava</groupId>
-      <artifactId>scribejava-apis</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.tomitribe</groupId>
-      <artifactId>tomitribe-http-signatures</artifactId>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/io.reactivex/rxjava -->
-    <dependency>
-      <groupId>io.reactivex</groupId>
-      <artifactId>rxjava</artifactId>
     </dependency>
   </dependencies>
 
