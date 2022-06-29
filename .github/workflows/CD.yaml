@@ -1,0 +1,34 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - "main"
+jobs:
+  sdk-build:
+    concurrency:
+      group: ffm-fleet-manager-java-sdk-pr-${{ github.head_ref }}
+      cancel-in-progress: true
+    timeout-minutes: 45
+    runs-on: ubuntu-latest
+    name: Build and Test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Free disk space
+        uses: ./.github/actions/free-disk-space
+      - name: Java and Maven Setup
+        uses: ./.github/actions/java-maven-setup
+        with:
+          cache-key-prefix: ${{ runner.os }}
+      - name: Compile, Measure Coverage and Validate Formating
+        uses: ./.github/actions/maven
+        with:
+          maven-command: verify -Dvalidate-formatting -nsu -fae -e
+      - name: Publish Test Report
+        if: ${{ always() }}
+        uses: scacap/action-surefire-report@v1.0.10
+        with:
+          skip_publishing: true
+          check_name: Test Results
+          fail_on_test_failures: true
+          fail_if_no_tests: false
