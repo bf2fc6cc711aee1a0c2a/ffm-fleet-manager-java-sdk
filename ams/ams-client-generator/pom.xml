@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>ams</artifactId>
+    <groupId>com.redhat.services.ffm</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>Factorized Fleet Manager :: AMS Client Generator</name>
+  <artifactId>ams-client-generator</artifactId>
+
+  <dependencies>
+    <!-- dependencies are needed for the client being generated -->
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+    </dependency>
+
+    <!-- @Nullable annotation -->
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+    </dependency>
+
+    <!-- JSON processing: jackson -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.jaxrs</groupId>
+      <artifactId>jackson-jaxrs-base</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.jaxrs</groupId>
+      <artifactId>jackson-jaxrs-json-provider</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.openapitools</groupId>
+      <artifactId>jackson-databind-nullable</artifactId>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>generate-clients</id>
+      <activation>
+        <property>
+          <name>generate-clients</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.openapitools</groupId>
+            <artifactId>openapi-generator-maven-plugin</artifactId>
+            <version>6.0.0</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+                <phase>initialize</phase>
+                <configuration>
+                  <inputSpec>${project.basedir}/src/main/resources/api.json</inputSpec>
+                  <generatorName>java</generatorName>
+                  <skipValidateSpec>true</skipValidateSpec>
+                  <generateApiTests>false</generateApiTests>
+                  <generateModelTests>false</generateModelTests>
+                  <configOptions>
+                    <projectName>ams-client</projectName>
+                    <projectDescription>Java client for AMS.</projectDescription>
+                    <projectVersion>${project.version}</projectVersion>
+                    <projectLicenseName>Apache V2</projectLicenseName>
+                    <sortParamsByRequiredFlag>true</sortParamsByRequiredFlag>
+                    <modelPackage>com.redhat.services.ffm.ams.client.models</modelPackage>
+                    <apiPackage>com.redhat.services.ffm.ams.client.api</apiPackage>
+                    <invokerPackage>com.redhat.services.ffm.ams.client</invokerPackage>
+                    <ensureUniqueParams>true</ensureUniqueParams>
+                    <groupId>com.redhat.services.ffm</groupId>
+                    <artifactId>ams-client</artifactId>
+                    <artifactVersion>${project.version}</artifactVersion>
+                    <sourceFolder>src/main/java</sourceFolder>
+                    <serializableModel>false</serializableModel>
+                    <bigDecimalAsString>false</bigDecimalAsString>
+                    <fullJavaUtil>false</fullJavaUtil>
+                    <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                    <dateLibrary>java8</dateLibrary>
+                    <useRxJava>false</useRxJava>
+                    <library>native</library>
+                    <asyncNative>true</asyncNative>
+                    <responseWrapper>CompletableFuture</responseWrapper>
+                    <skipDefaultInterface>true</skipDefaultInterface>
+                    <serializationLibrary>jackson</serializationLibrary>
+                    <useReflectionEqualsHashCode>false</useReflectionEqualsHashCode>
+                    <output>${project.build.directory}/generated-sources</output>
+                  </configOptions>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

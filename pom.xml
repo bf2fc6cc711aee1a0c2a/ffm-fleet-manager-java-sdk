@@ -31,6 +31,7 @@
   <modules>
     <module>build-parent</module>
     <module>bom</module>
+    <module>ams</module>
   </modules>
 
 </project>
