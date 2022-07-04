@@ -20,33 +20,33 @@ import io.quarkus.oidc.client.Tokens;
  * Using the following dependency
  *
  * <dependency>
- *   <groupId>io.quarkus</groupId>
- *   <artifactId>quarkus-scheduler</artifactId>
+ * <groupId>io.quarkus</groupId>
+ * <artifactId>quarkus-scheduler</artifactId>
  * </dependency>
  *
  * a sample implementation is the following
  *
  * <pre>
- * @ApplicationScoped
+ * &#64;ApplicationScoped
  * public class WebhookOidcClient extends AbstractOidcClient {
  *
  *     private static final String NAME = OidcClientConstants.WEBHOOK_OIDC_CLIENT_NAME;
  *
- *     @ConfigProperty(name = "sso.auth-server-url")
+ *     &#64;ConfigProperty(name = "sso.auth-server-url")
  *     String serverUrl;
  *
- *     @ConfigProperty(name = "sso.webhook-client-id")
+ *     &#64;ConfigProperty(name = "sso.webhook-client-id")
  *     String clientId;
  *
- *     @ConfigProperty(name = "sso.credentials.webhook-client-secret")
+ *     &#64;ConfigProperty(name = "sso.credentials.webhook-client-secret")
  *     String secret;
  *
- *     @Inject
+ *     &#64;Inject
  *     public WebhookOidcClient(OidcClients oidcClients) {
  *         super(NAME, oidcClients);
  *     }
  *
- *     @Override
+ *     &#64;Override
  *     protected OidcClientConfig getOidcClientConfig() {
  *         OidcClientConfig oidcClientConfig = new OidcClientConfig();
  *         oidcClientConfig.setId(NAME);
@@ -58,8 +58,8 @@ import io.quarkus.oidc.client.Tokens;
  *         return oidcClientConfig;
  *     }
  *
- *     @Override
- *     @Scheduled(every = AbstractOidcClient.SCHEDULER_TIME)
+ *     &#64;Override
+ *     &#64;Scheduled(every = AbstractOidcClient.SCHEDULER_TIME)
  *     protected void scheduledLoop() {
  *         super.checkAndRefresh();
  *     }
