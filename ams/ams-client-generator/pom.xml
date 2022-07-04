@@ -106,6 +106,7 @@
                     <library>native</library>
                     <asyncNative>true</asyncNative>
                     <responseWrapper>CompletableFuture</responseWrapper>
+                    <useRuntimeException>true</useRuntimeException>
                     <skipDefaultInterface>true</skipDefaultInterface>
                     <serializationLibrary>jackson</serializationLibrary>
                     <useReflectionEqualsHashCode>false</useReflectionEqualsHashCode>

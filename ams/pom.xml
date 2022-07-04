@@ -18,5 +18,6 @@
   <modules>
     <module>ams-client</module>
     <module>ams-client-generator</module>
+    <module>ams-core</module>
   </modules>
 </project>

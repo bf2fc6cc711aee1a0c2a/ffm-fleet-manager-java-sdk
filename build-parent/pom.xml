@@ -40,7 +40,7 @@
     <enforcer.plugin.version>3.0.0</enforcer.plugin.version>
     <restrict-imports.plugin.version>1.4.0</restrict-imports.plugin.version>
     <google.code.findbugs.version>3.0.2</google.code.findbugs.version>
-
+    <com.github.tomakehurst.wiremock.version>2.30.1</com.github.tomakehurst.wiremock.version>
     <swagger-annotations.version>1.5.8</swagger-annotations.version>
     <jersey.version>2.35</jersey.version>
     <jackson.version>2.13.0</jackson.version>
@@ -112,6 +112,12 @@
         <groupId>com.google.code.findbugs</groupId>
         <artifactId>jsr305</artifactId>
         <version>${google.code.findbugs.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.tomakehurst</groupId>
+        <artifactId>wiremock-jre8</artifactId>
+        <version>${com.github.tomakehurst.wiremock.version}</version>
+        <scope>test</scope>
       </dependency>
 
     </dependencies>
