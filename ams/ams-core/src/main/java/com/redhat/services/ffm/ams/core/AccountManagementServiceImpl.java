@@ -10,6 +10,7 @@ import com.redhat.services.ffm.ams.client.models.TermsReviewResponse;
 import com.redhat.services.ffm.ams.core.exceptions.CreationNotAllowedException;
 import com.redhat.services.ffm.ams.core.exceptions.TermsRequiredException;
 import com.redhat.services.ffm.ams.core.models.CreateResourceRequest;
+import com.redhat.services.ffm.ams.core.models.ResourceCreated;
 
 import io.smallrye.mutiny.Uni;
 
@@ -22,7 +23,7 @@ public class AccountManagementServiceImpl implements AccountManagementService {
     }
 
     @Override
-    public Uni<String> createResource(CreateResourceRequest createResourceRequest) {
+    public Uni<ResourceCreated> createResource(CreateResourceRequest createResourceRequest) {
         return assertAcceptedTerms(createResourceRequest)
                 .onItem()
                 .transformToUni(x -> Uni.createFrom()
@@ -33,7 +34,9 @@ public class AccountManagementServiceImpl implements AccountManagementService {
                     if (!x.getAllowed()) {
                         throw new CreationNotAllowedException("Not allowed to create to create the resource.");
                     }
-                    return Uni.createFrom().item(x.getSubscription().getId());
+                    ResourceCreated resourceCreated = new ResourceCreated();
+                    resourceCreated.setId(x.getSubscription().getId());
+                    return Uni.createFrom().item(resourceCreated);
                 });
     }
 

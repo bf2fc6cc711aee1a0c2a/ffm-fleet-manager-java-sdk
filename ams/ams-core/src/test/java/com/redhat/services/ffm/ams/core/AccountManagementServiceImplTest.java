@@ -21,6 +21,7 @@ import com.redhat.services.ffm.ams.core.exceptions.TermsRequiredException;
 import com.redhat.services.ffm.ams.core.models.AccountInfo;
 import com.redhat.services.ffm.ams.core.models.AccountManagementServiceClientConfig;
 import com.redhat.services.ffm.ams.core.models.CreateResourceRequest;
+import com.redhat.services.ffm.ams.core.models.ResourceCreated;
 import com.redhat.services.ffm.ams.core.models.TermRequest;
 import com.redhat.services.ffm.ams.infra.auth.TokenProvider;
 
@@ -58,7 +59,7 @@ public class AccountManagementServiceImplTest {
         AccountManagementService accountManagementService = buildAccountManagementService(tokenProvider);
         CreateResourceRequest createResourceRequest = craftCreateResourceRequest();
 
-        Uni<String> response = accountManagementService.createResource(createResourceRequest);
+        Uni<ResourceCreated> response = accountManagementService.createResource(createResourceRequest);
         try {
             response.await().atMost(Duration.ofSeconds(10));
         } catch (Exception ignored) {
@@ -78,7 +79,7 @@ public class AccountManagementServiceImplTest {
         AccountManagementService accountManagementService = buildAccountManagementService(null);
         CreateResourceRequest createResourceRequest = craftCreateResourceRequest();
 
-        Uni<String> response = accountManagementService.createResource(createResourceRequest);
+        Uni<ResourceCreated> response = accountManagementService.createResource(createResourceRequest);
         try {
             response.await().atMost(Duration.ofSeconds(10));
         } catch (Exception ignored) {
@@ -98,7 +99,7 @@ public class AccountManagementServiceImplTest {
         AccountManagementService accountManagementService = buildAccountManagementService(null);
         CreateResourceRequest createResourceRequest = craftCreateResourceRequest();
 
-        Uni<String> response = accountManagementService.createResource(createResourceRequest);
+        Uni<ResourceCreated> response = accountManagementService.createResource(createResourceRequest);
         Assertions.assertThatThrownBy(() -> response.await().atMost(Duration.ofSeconds(10)))
                 .isInstanceOf(TermsRequiredException.class);
     }
@@ -110,7 +111,7 @@ public class AccountManagementServiceImplTest {
         AccountManagementService accountManagementService = buildAccountManagementService(null);
         CreateResourceRequest createResourceRequest = craftCreateResourceRequest();
 
-        Uni<String> response = accountManagementService.createResource(createResourceRequest);
+        Uni<ResourceCreated> response = accountManagementService.createResource(createResourceRequest);
         Assertions.assertThatThrownBy(() -> response.await().atMost(Duration.ofSeconds(10)))
                 .isInstanceOf(CreationNotAllowedException.class);
     }
@@ -122,8 +123,9 @@ public class AccountManagementServiceImplTest {
         AccountManagementService accountManagementService = buildAccountManagementService(null);
         CreateResourceRequest createResourceRequest = craftCreateResourceRequest();
 
-        Uni<String> response = accountManagementService.createResource(createResourceRequest);
-        Assertions.assertThat(response.await().atMost(Duration.ofSeconds(10))).isEqualTo(Constants.DEFAULT_SUBSCRIPTION_ID);
+        Uni<ResourceCreated> response = accountManagementService.createResource(createResourceRequest);
+        Assertions.assertThat(response.await().atMost(Duration.ofSeconds(10)).getId())
+                .isEqualTo(Constants.DEFAULT_SUBSCRIPTION_ID);
     }
 
     private AccountManagementService buildAccountManagementService(TokenProvider tokenProvider) {
