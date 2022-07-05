@@ -129,8 +129,9 @@ public class AccountManagementServiceImplTest {
     }
 
     private AccountManagementService buildAccountManagementService(TokenProvider tokenProvider) {
-        AccountManagementServiceClientConfig config = new AccountManagementServiceClientConfig();
-        config.setPort(wireMockServer.port());
+        AccountManagementServiceClientConfig config = new AccountManagementServiceClientConfig.Builder()
+                .withPort(wireMockServer.port())
+                .build();
 
         return new AccountManagementServiceBuilder()
                 .withConfig(config)
@@ -139,19 +140,25 @@ public class AccountManagementServiceImplTest {
     }
 
     private CreateResourceRequest craftCreateResourceRequest() {
-        CreateResourceRequest createResourceRequest = new CreateResourceRequest();
-
-        createResourceRequest.setAccountInfo(new AccountInfo(Constants.DEFAULT_ORGANIZATION_ID, Constants.DEFAULT_USERNAME,
-                false, Constants.DEFAULT_ACCOUNT_ID));
-        createResourceRequest
-                .setTermRequest(new TermRequest(Constants.DEFAULT_TERM_SITE_CODE, Constants.DEFAULT_TERM_EVENT_CODE));
-        createResourceRequest.setResourceName(Constants.DEFAULT_RESOURCE_NAME);
-        createResourceRequest.setCloudProviderId(Constants.DEFAULT_CLOUD_PROVIDER_ID);
-        createResourceRequest.setClusterId(Constants.DEFAULT_CLUSTER_ID);
-        createResourceRequest.setBillingModel(Constants.DEFAULT_BILLING_MODEL);
-        createResourceRequest.setAvailabilityZoneType(Constants.DEFAULT_AVAILABILITY_ZONE_TYPE);
-        createResourceRequest.setCount(Constants.DEFAULT_COUNT);
-        createResourceRequest.setProductId(ClusterAuthorizationRequest.ProductIdEnum.OSD.getValue());
+        CreateResourceRequest createResourceRequest = new CreateResourceRequest.Builder()
+                .withAccountInfo(new AccountInfo.Builder()
+                        .withOrganizationId(Constants.DEFAULT_ORGANIZATION_ID)
+                        .withAccountUsername(Constants.DEFAULT_USERNAME)
+                        .withAccountId(Constants.DEFAULT_ACCOUNT_ID)
+                        .withAdminRole(false)
+                        .build())
+                .withTermRequest(new TermRequest.Builder()
+                        .withSiteCode(Constants.DEFAULT_TERM_SITE_CODE)
+                        .withEventCode(Constants.DEFAULT_TERM_EVENT_CODE)
+                        .build())
+                .withResourceName(Constants.DEFAULT_RESOURCE_NAME)
+                .withCloudProviderId((Constants.DEFAULT_CLOUD_PROVIDER_ID))
+                .withClusterId(Constants.DEFAULT_CLUSTER_ID)
+                .withBillingModel(Constants.DEFAULT_BILLING_MODEL)
+                .withAvailabilityZoneType(Constants.DEFAULT_AVAILABILITY_ZONE_TYPE)
+                .withCount(Constants.DEFAULT_COUNT)
+                .withProductId(ClusterAuthorizationRequest.ProductIdEnum.OSD.getValue())
+                .build();
 
         return createResourceRequest;
     }

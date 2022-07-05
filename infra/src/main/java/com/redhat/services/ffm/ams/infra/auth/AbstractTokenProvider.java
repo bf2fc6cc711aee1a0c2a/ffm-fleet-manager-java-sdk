@@ -19,10 +19,10 @@ import io.quarkus.oidc.client.Tokens;
  *
  * Using the following dependency
  *
- * <dependency>
- * <groupId>io.quarkus</groupId>
- * <artifactId>quarkus-scheduler</artifactId>
- * </dependency>
+ * &lt;dependency&gt;
+ * &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+ * &lt;artifactId&gt;quarkus-scheduler&lt;/artifactId&gt;
+ * &lt;/dependency&gt;
  *
  * a sample implementation is the following
  *
@@ -102,6 +102,10 @@ public abstract class AbstractTokenProvider implements TokenProvider {
         retrieveTokens();
     }
 
+    /**
+     * It is not possible to annotate this method with `@Scheduled` so it has to be done by the child classes.
+     * TODO: check if with a quarkus extension this can be achieved
+     */
     protected void checkAndRefresh() {
         if (currentTokens.isAccessTokenExpired() || currentTokens.isAccessTokenWithinRefreshInterval()) {
             refreshTokens();
@@ -109,6 +113,11 @@ public abstract class AbstractTokenProvider implements TokenProvider {
         }
     }
 
+    /**
+     * Gets the token.
+     *
+     * @return the token.
+     */
     public String getToken() {
         if (currentTokens == null) {
             throw new OidcTokensNotInitializedException(

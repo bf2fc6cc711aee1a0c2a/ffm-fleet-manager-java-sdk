@@ -14,11 +14,11 @@ import com.redhat.services.ffm.ams.core.models.ResourceCreated;
 
 import io.smallrye.mutiny.Uni;
 
-public class AccountManagementServiceImpl implements AccountManagementService {
+class AccountManagementServiceImpl implements AccountManagementService {
 
     private DefaultApi defaultApi;
 
-    protected AccountManagementServiceImpl(DefaultApi defaultApi) {
+    AccountManagementServiceImpl(DefaultApi defaultApi) {
         this.defaultApi = defaultApi;
     }
 
@@ -34,8 +34,7 @@ public class AccountManagementServiceImpl implements AccountManagementService {
                     if (!x.getAllowed()) {
                         throw new CreationNotAllowedException("Not allowed to create to create the resource.");
                     }
-                    ResourceCreated resourceCreated = new ResourceCreated();
-                    resourceCreated.setId(x.getSubscription().getId());
+                    ResourceCreated resourceCreated = new ResourceCreated.Builder().withId(x.getSubscription().getId()).build();
                     return Uni.createFrom().item(resourceCreated);
                 });
     }
