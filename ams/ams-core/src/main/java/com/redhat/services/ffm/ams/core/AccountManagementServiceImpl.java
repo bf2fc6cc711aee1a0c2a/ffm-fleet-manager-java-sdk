@@ -32,7 +32,8 @@ class AccountManagementServiceImpl implements AccountManagementService {
                 .onItem()
                 .transformToUni(x -> {
                     if (!x.getAllowed()) {
-                        throw new CreationNotAllowedException("Not allowed to create to create the resource.");
+                        return Uni.createFrom()
+                                .failure(new CreationNotAllowedException("Not allowed to create to create the resource."));
                     }
                     ResourceCreated resourceCreated = new ResourceCreated.Builder().withId(x.getSubscription().getId()).build();
                     return Uni.createFrom().item(resourceCreated);
@@ -74,11 +75,12 @@ class AccountManagementServiceImpl implements AccountManagementService {
                 .createFrom()
                 .completionStage(defaultApi.apiAuthorizationsV1TermsReviewPost(termsReview))
                 .onItem()
-                .transform(x -> {
+                .transformToUni(x -> {
                     if (Boolean.TRUE.equals(x.getTermsAvailable()) && Boolean.TRUE.equals(x.getTermsRequired())) {
-                        throw new TermsRequiredException("The terms conditions haven't been accepted yet.");
+                        return Uni.createFrom()
+                                .failure(new TermsRequiredException("The terms conditions haven't been accepted yet."));
                     }
-                    return x;
+                    return Uni.createFrom().item(x);
                 });
     }
 }

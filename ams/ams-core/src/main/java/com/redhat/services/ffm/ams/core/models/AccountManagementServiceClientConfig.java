@@ -1,6 +1,7 @@
 package com.redhat.services.ffm.ams.core.models;
 
 import java.time.Duration;
+import java.util.Objects;
 
 import com.redhat.services.ffm.ams.core.AccountManagementService;
 
@@ -56,6 +57,24 @@ public class AccountManagementServiceClientConfig {
      */
     public Duration getConnectionTimeout() {
         return connectionTimeout;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AccountManagementServiceClientConfig that = (AccountManagementServiceClientConfig) o;
+        return Objects.equals(host, that.host) && Objects.equals(port, that.port)
+                && Objects.equals(readTimeout, that.readTimeout) && Objects.equals(connectionTimeout, that.connectionTimeout);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(host, port, readTimeout, connectionTimeout);
     }
 
     /**

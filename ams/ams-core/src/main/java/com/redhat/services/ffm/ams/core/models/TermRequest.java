@@ -1,5 +1,7 @@
 package com.redhat.services.ffm.ams.core.models;
 
+import java.util.Objects;
+
 public class TermRequest {
     private final String siteCode;
     private final String eventCode;
@@ -9,12 +11,39 @@ public class TermRequest {
         this.eventCode = eventCode;
     }
 
+    /**
+     * Gets the site code.
+     *
+     * @return the site code
+     */
     public String getSiteCode() {
         return siteCode;
     }
 
+    /**
+     * Gets the event code.
+     *
+     * @return the event code.
+     */
     public String getEventCode() {
         return eventCode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TermRequest that = (TermRequest) o;
+        return Objects.equals(siteCode, that.siteCode) && Objects.equals(eventCode, that.eventCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(siteCode, eventCode);
     }
 
     /**

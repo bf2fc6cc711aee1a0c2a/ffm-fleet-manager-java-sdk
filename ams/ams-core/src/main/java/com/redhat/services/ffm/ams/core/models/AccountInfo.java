@@ -1,5 +1,7 @@
 package com.redhat.services.ffm.ams.core.models;
 
+import java.util.Objects;
+
 /**
  * This class constains the account information of the user that wants to perform an operation on a resource.
  */
@@ -51,6 +53,24 @@ public class AccountInfo {
      */
     public Long getAccountId() {
         return accountId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AccountInfo that = (AccountInfo) o;
+        return Objects.equals(organizationId, that.organizationId) && Objects.equals(accountUsername, that.accountUsername)
+                && Objects.equals(adminRole, that.adminRole) && Objects.equals(accountId, that.accountId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(organizationId, accountUsername, adminRole, accountId);
     }
 
     /**

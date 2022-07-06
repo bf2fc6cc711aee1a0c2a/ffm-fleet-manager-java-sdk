@@ -5,6 +5,9 @@ import com.redhat.services.ffm.ams.core.models.ResourceCreated;
 
 import io.smallrye.mutiny.Uni;
 
+/**
+ * Service to interact with Account Management Service.
+ */
 public interface AccountManagementService {
 
     /**
