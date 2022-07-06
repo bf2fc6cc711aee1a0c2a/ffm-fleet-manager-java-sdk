@@ -3,7 +3,7 @@ package com.redhat.services.ffm.ams.core;
 import com.redhat.services.ffm.ams.client.ApiClient;
 import com.redhat.services.ffm.ams.client.api.DefaultApi;
 import com.redhat.services.ffm.ams.core.models.AccountManagementServiceClientConfig;
-import com.redhat.services.ffm.ams.infra.auth.TokenProvider;
+import com.redhat.services.ffm.ams.utils.auth.TokenProvider;
 
 /**
  * The builder for the Account Management Service

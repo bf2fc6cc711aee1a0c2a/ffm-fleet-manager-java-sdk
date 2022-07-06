@@ -3,29 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
-    <artifactId>ams</artifactId>
+    <artifactId>build-parent</artifactId>
     <groupId>com.redhat.services.ffm</groupId>
     <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../build-parent/pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <name>Factorized Fleet Manager :: AMS Core</name>
-  <artifactId>ams-core</artifactId>
+  <name>Factorized Fleet Manager :: Utils</name>
+  <artifactId>utils</artifactId>
 
   <dependencies>
-
     <dependency>
-      <groupId>io.smallrye.reactive</groupId>
-      <artifactId>mutiny</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.redhat.services.ffm</groupId>
-      <artifactId>ams-client</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.redhat.services.ffm</groupId>
-      <artifactId>utils</artifactId>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-oidc-client</artifactId>
     </dependency>
 
     <dependency>
@@ -43,11 +34,5 @@
       <artifactId>mockito-junit-jupiter</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>com.github.tomakehurst</groupId>
-      <artifactId>wiremock-jre8</artifactId>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
-
 </project>

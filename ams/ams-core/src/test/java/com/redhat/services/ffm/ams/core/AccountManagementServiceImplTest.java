@@ -23,7 +23,7 @@ import com.redhat.services.ffm.ams.core.models.AccountManagementServiceClientCon
 import com.redhat.services.ffm.ams.core.models.CreateResourceRequest;
 import com.redhat.services.ffm.ams.core.models.ResourceCreated;
 import com.redhat.services.ffm.ams.core.models.TermRequest;
-import com.redhat.services.ffm.ams.infra.auth.TokenProvider;
+import com.redhat.services.ffm.ams.utils.auth.TokenProvider;
 
 import io.smallrye.mutiny.Uni;
 

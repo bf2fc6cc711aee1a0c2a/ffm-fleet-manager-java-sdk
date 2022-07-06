@@ -32,7 +32,7 @@
     <module>build-parent</module>
     <module>bom</module>
     <module>ams</module>
-    <module>infra</module>
+    <module>utils</module>
   </modules>
 
 </project>
