@@ -42,23 +42,27 @@ class AccountManagementServiceImpl implements AccountManagementService {
 
     private ClusterAuthorizationRequest buildClusterAuthorizationRequest(CreateResourceRequest createResourceRequest) {
         ReservedResource reservedResource = new ReservedResource();
-        reservedResource.setByoc(false);
         reservedResource.setResourceName(createResourceRequest.getResourceName());
         reservedResource.setBillingModel(createResourceRequest.getBillingModel());
         reservedResource.setAvailabilityZoneType(createResourceRequest.getAvailabilityZoneType());
         reservedResource.setCount(createResourceRequest.getCount());
 
+        // Setting default values
+        reservedResource.setByoc(false);
+
         ClusterAuthorizationRequest clusterAuthorizationRequest = new ClusterAuthorizationRequest();
         clusterAuthorizationRequest.setAccountUsername(createResourceRequest.getAccountInfo().getAccountUsername());
         clusterAuthorizationRequest
                 .setProductId(ClusterAuthorizationRequest.ProductIdEnum.fromValue(createResourceRequest.getProductId()));
-        clusterAuthorizationRequest.setManaged(true);
-        clusterAuthorizationRequest.setByoc(false);
         clusterAuthorizationRequest.setCloudProviderId(createResourceRequest.getCloudProviderId());
-        clusterAuthorizationRequest.setReserve(true);
         clusterAuthorizationRequest.setAvailabilityZone(createResourceRequest.getAvailabilityZoneType());
         clusterAuthorizationRequest.setClusterId(createResourceRequest.getClusterId());
         clusterAuthorizationRequest.setResources(Collections.singletonList(reservedResource));
+
+        // Setting default values
+        clusterAuthorizationRequest.setReserve(true);
+        clusterAuthorizationRequest.setManaged(true);
+        clusterAuthorizationRequest.setByoc(false);
 
         return clusterAuthorizationRequest;
     }

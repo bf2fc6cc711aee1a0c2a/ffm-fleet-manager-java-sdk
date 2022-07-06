@@ -1,5 +1,7 @@
 package com.redhat.services.ffm.ams.core;
 
+import com.redhat.services.ffm.ams.core.exceptions.CreationNotAllowedException;
+import com.redhat.services.ffm.ams.core.exceptions.TermsRequiredException;
 import com.redhat.services.ffm.ams.core.models.CreateResourceRequest;
 import com.redhat.services.ffm.ams.core.models.ResourceCreated;
 
@@ -12,6 +14,11 @@ public interface AccountManagementService {
 
     /**
      * Creates a resource if the organization has available quotas on the Account Management Service.
+     *
+     * If the user has not accepted the available terms a {@link TermsRequiredException} is raised.
+     * If the terms have been accepted but the user is not allowed to create the resource for whatever reason, a
+     * {@link CreationNotAllowedException} is raised.
+     * If the resource has been created successfully, an object that contains the id of the resource is returned.
      *
      * @param createResourceRequest
      * @return The created resource reference.
