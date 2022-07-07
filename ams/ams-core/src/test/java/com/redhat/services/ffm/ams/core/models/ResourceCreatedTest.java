@@ -37,7 +37,8 @@ public class ResourceCreatedTest {
 
     @Test
     void builderSetsAllProperties() {
-        ResourceCreated resourceCreated = new ResourceCreated.Builder().withId(Constants.DEFAULT_SUBSCRIPTION_ID).build();
-        Assertions.assertThat(resourceCreated.getId()).isEqualTo(Constants.DEFAULT_SUBSCRIPTION_ID);
+        ResourceCreated resourceCreated = new ResourceCreated.Builder().withSubscriptionId(Constants.DEFAULT_SUBSCRIPTION_ID)
+                .build();
+        Assertions.assertThat(resourceCreated.getSubscriptionId()).isEqualTo(Constants.DEFAULT_SUBSCRIPTION_ID);
     }
 }

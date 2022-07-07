@@ -2,6 +2,7 @@ package com.redhat.services.ffm.ams.core;
 
 import com.redhat.services.ffm.ams.core.exceptions.CreationNotAllowedException;
 import com.redhat.services.ffm.ams.core.exceptions.TermsRequiredException;
+import com.redhat.services.ffm.ams.core.models.AccountInfo;
 import com.redhat.services.ffm.ams.core.models.CreateResourceRequest;
 import com.redhat.services.ffm.ams.core.models.ResourceCreated;
 
@@ -25,4 +26,19 @@ public interface AccountManagementService {
      */
     Uni<ResourceCreated> createResource(CreateResourceRequest createResourceRequest);
 
+    /**
+     * Deletes a resource by subscription id.
+     *
+     * @param resourceId
+     * @return void.
+     */
+    Uni<Void> deleteResource(String resourceId);
+
+    /**
+     * Determine if the organization has available quota for a product.
+     *
+     * @param accountInfo
+     * @return <code>true</code> if the organization has available quota, <code>false</code> otherwise.
+     */
+    Uni<Boolean> organizationHasAvailableQuota(AccountInfo accountInfo, String productId, String resourceName);
 }

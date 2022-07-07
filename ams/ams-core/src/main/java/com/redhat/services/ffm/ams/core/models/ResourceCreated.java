@@ -4,19 +4,19 @@ import java.util.Objects;
 
 public class ResourceCreated {
 
-    private final String id;
+    private final String subscriptionId;
 
-    protected ResourceCreated(String id) {
-        this.id = id;
+    protected ResourceCreated(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
     }
 
     /**
      * Gets the id of the created resource.
      *
-     * @return the id.
+     * @return the subscription id.
      */
-    public String getId() {
-        return id;
+    public String getSubscriptionId() {
+        return subscriptionId;
     }
 
     @Override
@@ -28,12 +28,12 @@ public class ResourceCreated {
             return false;
         }
         ResourceCreated that = (ResourceCreated) o;
-        return Objects.equals(id, that.id);
+        return Objects.equals(subscriptionId, that.subscriptionId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(subscriptionId);
     }
 
     /**
@@ -41,19 +41,19 @@ public class ResourceCreated {
      */
     public static class Builder {
 
-        private String id;
+        private String subscriptionId;
 
         public Builder() {
         }
 
         /**
-         * Sets the id of the created resource in the builder.
+         * Sets the subscriptionId of the created resource in the builder.
          *
-         * @param id
+         * @param subscriptionId
          * @return the builder.
          */
-        public Builder withId(String id) {
-            this.id = id;
+        public Builder withSubscriptionId(String subscriptionId) {
+            this.subscriptionId = subscriptionId;
             return this;
         }
 
@@ -63,7 +63,7 @@ public class ResourceCreated {
          * @return the {@link ResourceCreated} instance.
          */
         public ResourceCreated build() {
-            return new ResourceCreated(id);
+            return new ResourceCreated(subscriptionId);
         }
     }
 }

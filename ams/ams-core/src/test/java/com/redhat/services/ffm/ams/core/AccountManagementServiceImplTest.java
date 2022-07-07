@@ -124,8 +124,25 @@ public class AccountManagementServiceImplTest {
         CreateResourceRequest createResourceRequest = craftCreateResourceRequest();
 
         Uni<ResourceCreated> response = accountManagementService.createResource(createResourceRequest);
-        Assertions.assertThat(response.await().atMost(Duration.ofSeconds(10)).getId())
+        Assertions.assertThat(response.await().atMost(Duration.ofSeconds(10)).getSubscriptionId())
                 .isEqualTo(Constants.DEFAULT_SUBSCRIPTION_ID);
+    }
+
+    @Test
+    void deleteResourceNotImplementedYet() {
+        AccountManagementService accountManagementService = buildAccountManagementService(null);
+        Uni<Void> response = accountManagementService.deleteResource(Constants.DEFAULT_SUBSCRIPTION_ID);
+
+        Assertions.assertThatThrownBy(() -> response.await().atMost(Duration.ofSeconds(5))).hasMessage("Not implemented yet.");
+    }
+
+    @Test
+    void organizationHasAvailableQuotaNotImplementedYet() {
+        AccountManagementService accountManagementService = buildAccountManagementService(null);
+        Uni<Boolean> response = accountManagementService.organizationHasAvailableQuota(Constants.DEFAULT_ACCOUNT_INFO,
+                Constants.DEFAULT_PRODUCT_ID.getValue(), Constants.DEFAULT_RESOURCE_NAME);
+
+        Assertions.assertThatThrownBy(() -> response.await().atMost(Duration.ofSeconds(5))).hasMessage("Not implemented yet.");
     }
 
     private AccountManagementService buildAccountManagementService(TokenProvider tokenProvider) {
