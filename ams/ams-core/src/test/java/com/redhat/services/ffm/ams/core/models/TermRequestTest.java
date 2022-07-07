@@ -9,14 +9,14 @@ public class TermRequestTest {
 
     @Test
     void builderThrowsExceptionIfMandatoryPropertyIsMissing() {
-        Assertions.assertThatThrownBy(() -> new TermRequest.Builder()
+        Assertions.assertThatThrownBy(() -> new TermsRequest.Builder()
                 .build())
                 .isInstanceOf(IllegalStateException.class);
-        Assertions.assertThatThrownBy(() -> new TermRequest.Builder()
+        Assertions.assertThatThrownBy(() -> new TermsRequest.Builder()
                 .withSiteCode(Constants.DEFAULT_TERM_SITE_CODE)
                 .build())
                 .isInstanceOf(IllegalStateException.class);
-        Assertions.assertThatThrownBy(() -> new TermRequest.Builder()
+        Assertions.assertThatThrownBy(() -> new TermsRequest.Builder()
                 .withEventCode(Constants.DEFAULT_TERM_EVENT_CODE)
                 .build())
                 .isInstanceOf(IllegalStateException.class);
@@ -24,7 +24,7 @@ public class TermRequestTest {
 
     @Test
     void builderSetsAllProperties() {
-        TermRequest termRequest = new TermRequest.Builder()
+        TermsRequest termRequest = new TermsRequest.Builder()
                 .withEventCode(Constants.DEFAULT_TERM_EVENT_CODE)
                 .withSiteCode(Constants.DEFAULT_TERM_SITE_CODE)
                 .build();

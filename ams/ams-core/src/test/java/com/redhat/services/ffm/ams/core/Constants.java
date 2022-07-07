@@ -2,7 +2,7 @@ package com.redhat.services.ffm.ams.core;
 
 import com.redhat.services.ffm.ams.client.models.ClusterAuthorizationRequest;
 import com.redhat.services.ffm.ams.core.models.AccountInfo;
-import com.redhat.services.ffm.ams.core.models.TermRequest;
+import com.redhat.services.ffm.ams.core.models.TermsRequest;
 
 public class Constants {
 
@@ -38,7 +38,7 @@ public class Constants {
             .withAdminRole(DEFAULT_ADMIN_ROLE)
             .withOrganizationId(DEFAULT_ORGANIZATION_ID)
             .build();
-    public static final TermRequest DEFAULT_TERMS_REQUEST = new TermRequest.Builder()
+    public static final TermsRequest DEFAULT_TERMS_REQUEST = new TermsRequest.Builder()
             .withEventCode(DEFAULT_TERM_EVENT_CODE)
             .withSiteCode(DEFAULT_TERM_SITE_CODE)
             .build();

@@ -2,11 +2,11 @@ package com.redhat.services.ffm.ams.core.models;
 
 import java.util.Objects;
 
-public class TermRequest {
+public class TermsRequest {
     private final String siteCode;
     private final String eventCode;
 
-    protected TermRequest(String siteCode, String eventCode) {
+    protected TermsRequest(String siteCode, String eventCode) {
         this.siteCode = siteCode;
         this.eventCode = eventCode;
     }
@@ -37,7 +37,7 @@ public class TermRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        TermRequest that = (TermRequest) o;
+        TermsRequest that = (TermsRequest) o;
         return Objects.equals(siteCode, that.siteCode) && Objects.equals(eventCode, that.eventCode);
     }
 
@@ -47,7 +47,7 @@ public class TermRequest {
     }
 
     /**
-     * Builder for {@link TermRequest}.
+     * Builder for {@link TermsRequest}.
      */
     public static class Builder {
         private String siteCode;
@@ -81,9 +81,9 @@ public class TermRequest {
         /**
          * Builds the TermRequest.
          *
-         * @return the {@link TermRequest} instance.
+         * @return the {@link TermsRequest} instance.
          */
-        public TermRequest build() {
+        public TermsRequest build() {
             if (siteCode == null || siteCode.isBlank()) {
                 throw new IllegalStateException("The site code can't be null or empty.");
             }
@@ -92,7 +92,7 @@ public class TermRequest {
                 throw new IllegalStateException("The site code can't be null or empty.");
             }
 
-            return new TermRequest(siteCode, eventCode);
+            return new TermsRequest(siteCode, eventCode);
         }
     }
 }

@@ -22,7 +22,7 @@ import com.redhat.services.ffm.ams.core.models.AccountInfo;
 import com.redhat.services.ffm.ams.core.models.AccountManagementServiceClientConfig;
 import com.redhat.services.ffm.ams.core.models.CreateResourceRequest;
 import com.redhat.services.ffm.ams.core.models.ResourceCreated;
-import com.redhat.services.ffm.ams.core.models.TermRequest;
+import com.redhat.services.ffm.ams.core.models.TermsRequest;
 import com.redhat.services.ffm.ams.utils.auth.TokenProvider;
 
 import io.smallrye.mutiny.Uni;
@@ -164,7 +164,7 @@ public class AccountManagementServiceImplTest {
                         .withAccountId(Constants.DEFAULT_ACCOUNT_ID)
                         .withAdminRole(false)
                         .build())
-                .withTermRequest(new TermRequest.Builder()
+                .withTermRequest(new TermsRequest.Builder()
                         .withSiteCode(Constants.DEFAULT_TERM_SITE_CODE)
                         .withEventCode(Constants.DEFAULT_TERM_EVENT_CODE)
                         .build())

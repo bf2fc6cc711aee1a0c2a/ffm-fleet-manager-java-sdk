@@ -8,7 +8,7 @@ import java.util.Objects;
 public class CreateResourceRequest {
 
     private final AccountInfo accountInfo;
-    private final TermRequest termRequest;
+    private final TermsRequest termRequest;
     private final String productId;
     private final String cloudProviderId;
     private final String clusterId;
@@ -17,7 +17,7 @@ public class CreateResourceRequest {
     private final String availabilityZoneType;
     private final Integer count;
 
-    protected CreateResourceRequest(AccountInfo accountInfo, TermRequest termRequest, String productId, String cloudProviderId,
+    protected CreateResourceRequest(AccountInfo accountInfo, TermsRequest termRequest, String productId, String cloudProviderId,
             String clusterId, String resourceName, String billingModel, String availabilityZoneType, Integer count) {
         this.accountInfo = accountInfo;
         this.termRequest = termRequest;
@@ -44,7 +44,7 @@ public class CreateResourceRequest {
      *
      * @return the term request object.
      */
-    public TermRequest getTermRequest() {
+    public TermsRequest getTermRequest() {
         return termRequest;
     }
 
@@ -139,7 +139,7 @@ public class CreateResourceRequest {
     public static class Builder {
 
         private AccountInfo accountInfo;
-        private TermRequest termRequest;
+        private TermsRequest termRequest;
         private String productId;
         private String cloudProviderId;
         private String clusterId;
@@ -168,7 +168,7 @@ public class CreateResourceRequest {
          * @param termRequest
          * @return the builder.
          */
-        public Builder withTermRequest(TermRequest termRequest) {
+        public Builder withTermRequest(TermsRequest termRequest) {
             this.termRequest = termRequest;
             return this;
         }
