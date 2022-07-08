@@ -51,6 +51,42 @@
         <version>${project.version}</version>
         <classifier>javadoc</classifier>
       </dependency>
+
+      <dependency>
+        <groupId>com.redhat.services.ffm</groupId>
+        <artifactId>ams-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.redhat.services.ffm</groupId>
+        <artifactId>ams-core</artifactId>
+        <version>${project.version}</version>
+        <classifier>sources</classifier>
+      </dependency>
+      <dependency>
+        <groupId>com.redhat.services.ffm</groupId>
+        <artifactId>ams-core</artifactId>
+        <version>${project.version}</version>
+        <classifier>javadoc</classifier>
+      </dependency>
+
+      <dependency>
+        <groupId>com.redhat.services.ffm</groupId>
+        <artifactId>utils</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.redhat.services.ffm</groupId>
+        <artifactId>utils</artifactId>
+        <version>${project.version}</version>
+        <classifier>sources</classifier>
+      </dependency>
+      <dependency>
+        <groupId>com.redhat.services.ffm</groupId>
+        <artifactId>utils</artifactId>
+        <version>${project.version}</version>
+        <classifier>javadoc</classifier>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 

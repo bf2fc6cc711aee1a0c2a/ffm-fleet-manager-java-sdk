@@ -16,7 +16,7 @@ package com.redhat.services.ffm.ams.client;
 import java.net.http.HttpHeaders;
 
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ApiException extends Exception {
+public class ApiException extends RuntimeException {
     private int code = 0;
     private HttpHeaders responseHeaders = null;
     private String responseBody = null;
