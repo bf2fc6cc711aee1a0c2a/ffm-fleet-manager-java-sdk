@@ -11,56 +11,56 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 public class AMSWiremockUtils {
 
     public static void stubTermsNotAccepted(WireMockServer server) {
-        ObjectNode connector = JsonNodeFactory.instance.objectNode();
-        connector.set("account_id", JsonNodeFactory.instance.textNode(Constants.DEFAULT_ACCOUNT_ID_STRING));
-        connector.set("organization_id", JsonNodeFactory.instance.textNode(Constants.DEFAULT_ORGANIZATION_ID));
-        connector.set("redirect_url", JsonNodeFactory.instance.textNode(Constants.DEFAULT_REDIRECT_URL));
-        connector.set("terms_available", JsonNodeFactory.instance.booleanNode(true));
-        connector.set("terms_required", JsonNodeFactory.instance.booleanNode(true));
+        ObjectNode body = JsonNodeFactory.instance.objectNode();
+        body.set("account_id", JsonNodeFactory.instance.textNode(Constants.DEFAULT_ACCOUNT_ID_STRING));
+        body.set("organization_id", JsonNodeFactory.instance.textNode(Constants.DEFAULT_ORGANIZATION_ID));
+        body.set("redirect_url", JsonNodeFactory.instance.textNode(Constants.DEFAULT_REDIRECT_URL));
+        body.set("terms_available", JsonNodeFactory.instance.booleanNode(true));
+        body.set("terms_required", JsonNodeFactory.instance.booleanNode(true));
 
         server.stubFor(post(urlEqualTo(Constants.TERMS_PATH))
                 .willReturn(aResponse()
                         .withHeader(Constants.CONTENT_TYPE_HEADER, Constants.JSON_CONTENT_TYPE)
-                        .withJsonBody(connector)
+                        .withJsonBody(body)
                         .withStatus(200)));
     }
 
     public static void stubTermsAccepted(WireMockServer server) {
-        ObjectNode connector = JsonNodeFactory.instance.objectNode();
-        connector.set("account_id", JsonNodeFactory.instance.textNode(Constants.DEFAULT_ACCOUNT_ID_STRING));
-        connector.set("organization_id", JsonNodeFactory.instance.textNode(Constants.DEFAULT_ORGANIZATION_ID));
-        connector.set("redirect_url", JsonNodeFactory.instance.textNode(Constants.DEFAULT_REDIRECT_URL));
-        connector.set("terms_available", JsonNodeFactory.instance.booleanNode(true));
-        connector.set("terms_required", JsonNodeFactory.instance.booleanNode(false));
+        ObjectNode body = JsonNodeFactory.instance.objectNode();
+        body.set("account_id", JsonNodeFactory.instance.textNode(Constants.DEFAULT_ACCOUNT_ID_STRING));
+        body.set("organization_id", JsonNodeFactory.instance.textNode(Constants.DEFAULT_ORGANIZATION_ID));
+        body.set("redirect_url", JsonNodeFactory.instance.textNode(Constants.DEFAULT_REDIRECT_URL));
+        body.set("terms_available", JsonNodeFactory.instance.booleanNode(true));
+        body.set("terms_required", JsonNodeFactory.instance.booleanNode(false));
 
         server.stubFor(post(urlEqualTo(Constants.TERMS_PATH))
                 .willReturn(aResponse()
                         .withHeader(Constants.CONTENT_TYPE_HEADER, Constants.JSON_CONTENT_TYPE)
-                        .withJsonBody(connector)
+                        .withJsonBody(body)
                         .withStatus(200)));
     }
 
     public static void stubCreationSuccessfull(WireMockServer server) {
-        ObjectNode connector = JsonNodeFactory.instance.objectNode();
-        connector.set("allowed", JsonNodeFactory.instance.booleanNode(true));
-        connector.set("subscription", JsonNodeFactory.instance.objectNode().set("id",
+        ObjectNode body = JsonNodeFactory.instance.objectNode();
+        body.set("allowed", JsonNodeFactory.instance.booleanNode(true));
+        body.set("subscription", JsonNodeFactory.instance.objectNode().set("id",
                 JsonNodeFactory.instance.textNode(Constants.DEFAULT_SUBSCRIPTION_ID)));
 
         server.stubFor(post(urlEqualTo(Constants.CLUSTER_AUTHORIZATION_PATH))
                 .willReturn(aResponse()
                         .withHeader(Constants.CONTENT_TYPE_HEADER, Constants.JSON_CONTENT_TYPE)
-                        .withJsonBody(connector)
+                        .withJsonBody(body)
                         .withStatus(200)));
     }
 
     public static void stubCreationFailed(WireMockServer server) {
-        ObjectNode connector = JsonNodeFactory.instance.objectNode();
-        connector.set("allowed", JsonNodeFactory.instance.booleanNode(false));
+        ObjectNode body = JsonNodeFactory.instance.objectNode();
+        body.set("allowed", JsonNodeFactory.instance.booleanNode(false));
 
         server.stubFor(post(urlEqualTo(Constants.CLUSTER_AUTHORIZATION_PATH))
                 .willReturn(aResponse()
                         .withHeader(Constants.CONTENT_TYPE_HEADER, Constants.JSON_CONTENT_TYPE)
-                        .withJsonBody(connector)
+                        .withJsonBody(body)
                         .withStatus(200)));
     }
 
