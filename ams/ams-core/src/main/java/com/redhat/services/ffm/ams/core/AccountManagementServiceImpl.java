@@ -43,8 +43,8 @@ class AccountManagementServiceImpl implements AccountManagementService {
     }
 
     @Override
-    public Uni<Void> deleteResource(String resourceId) {
-        return Uni.createFrom().failure(new RuntimeException("Not implemented yet."));
+    public Uni<Void> deleteResource(String subscriptionId) {
+        return Uni.createFrom().completionStage(defaultApi.apiAccountsMgmtV1SubscriptionsIdDelete(subscriptionId));
     }
 
     @Override

@@ -64,6 +64,16 @@ public class AMSWiremockUtils {
                         .withStatus(200)));
     }
 
+    public static void stubDeletionSuccessfull(WireMockServer server) {
+        server.stubFor(post(urlEqualTo(Constants.SUBSCRIPTIONS_PATH))
+                .willReturn(aResponse().withStatus(200)));
+    }
+
+    public static void stubDeletionFailed(WireMockServer server) {
+        server.stubFor(post(urlEqualTo(Constants.SUBSCRIPTIONS_PATH))
+                .willReturn(aResponse().withStatus(404)));
+    }
+
     public static void stubTermsReturn500(WireMockServer server) {
         server.stubFor(post(urlEqualTo(Constants.CLUSTER_AUTHORIZATION_PATH))
                 .willReturn(aResponse()

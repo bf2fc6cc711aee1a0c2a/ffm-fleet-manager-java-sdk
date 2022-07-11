@@ -129,11 +129,22 @@ public class AccountManagementServiceImplTest {
     }
 
     @Test
-    void deleteResourceNotImplementedYet() {
+    void deleteResourceRaiseException() {
+        AMSWiremockUtils.stubDeletionFailed(wireMockServer);
         AccountManagementService accountManagementService = buildAccountManagementService(null);
         Uni<Void> response = accountManagementService.deleteResource(Constants.DEFAULT_SUBSCRIPTION_ID);
 
-        Assertions.assertThatThrownBy(() -> response.await().atMost(Duration.ofSeconds(5))).hasMessage("Not implemented yet.");
+        Assertions.assertThatThrownBy(() -> response.await().atMost(Duration.ofSeconds(5)))
+                .isInstanceOf(TermsRequiredException.class);
+    }
+
+    @Test
+    void deleteResourceReturnsVoidIfSuccessful() {
+        AMSWiremockUtils.stubDeletionSuccessfull(wireMockServer);
+        AccountManagementService accountManagementService = buildAccountManagementService(null);
+        Uni<Void> response = accountManagementService.deleteResource(Constants.DEFAULT_SUBSCRIPTION_ID);
+
+        Assertions.assertThat(response.await().atMost(Duration.ofSeconds(5))).isNull();
     }
 
     @Test
