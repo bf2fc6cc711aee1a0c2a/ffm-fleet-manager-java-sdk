@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.verification.LoggedRequest;
+import com.redhat.services.ffm.ams.client.ApiException;
 import com.redhat.services.ffm.ams.client.models.ClusterAuthorizationRequest;
 import com.redhat.services.ffm.ams.core.exceptions.CreationNotAllowedException;
 import com.redhat.services.ffm.ams.core.exceptions.TermsRequiredException;
@@ -130,17 +131,17 @@ public class AccountManagementServiceImplTest {
 
     @Test
     void deleteResourceRaiseException() {
-        AMSWiremockUtils.stubDeletionFailed(wireMockServer);
+        AMSWiremockUtils.stubDeletionFailed(wireMockServer, Constants.DEFAULT_SUBSCRIPTION_ID);
         AccountManagementService accountManagementService = buildAccountManagementService(null);
         Uni<Void> response = accountManagementService.deleteResource(Constants.DEFAULT_SUBSCRIPTION_ID);
 
         Assertions.assertThatThrownBy(() -> response.await().atMost(Duration.ofSeconds(5)))
-                .isInstanceOf(TermsRequiredException.class);
+                .isInstanceOf(ApiException.class);
     }
 
     @Test
     void deleteResourceReturnsVoidIfSuccessful() {
-        AMSWiremockUtils.stubDeletionSuccessfull(wireMockServer);
+        AMSWiremockUtils.stubDeletionSuccessfull(wireMockServer, Constants.DEFAULT_SUBSCRIPTION_ID);
         AccountManagementService accountManagementService = buildAccountManagementService(null);
         Uni<Void> response = accountManagementService.deleteResource(Constants.DEFAULT_SUBSCRIPTION_ID);
 
