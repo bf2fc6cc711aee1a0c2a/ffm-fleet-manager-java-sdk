@@ -1,6 +1,7 @@
 package com.redhat.services.ffm.ams.core;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.delete;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
@@ -62,6 +63,16 @@ public class AMSWiremockUtils {
                         .withHeader(Constants.CONTENT_TYPE_HEADER, Constants.JSON_CONTENT_TYPE)
                         .withJsonBody(body)
                         .withStatus(200)));
+    }
+
+    public static void stubDeletionSuccessfull(WireMockServer server, String subscriptionId) {
+        server.stubFor(delete(urlEqualTo(Constants.SUBSCRIPTIONS_PATH + "/" + subscriptionId))
+                .willReturn(aResponse().withStatus(200)));
+    }
+
+    public static void stubDeletionFailed(WireMockServer server, String subscriptionId) {
+        server.stubFor(delete(urlEqualTo(Constants.SUBSCRIPTIONS_PATH + "/" + subscriptionId))
+                .willReturn(aResponse().withStatus(404)));
     }
 
     public static void stubTermsReturn500(WireMockServer server) {
