@@ -149,12 +149,61 @@ public class AccountManagementServiceImplTest {
     }
 
     @Test
-    void organizationHasAvailableQuotaNotImplementedYet() {
+    void organizationHasAvailableQuota() {
+        AMSWiremockUtils.stubGetOrganizationById(wireMockServer, Constants.DEFAULT_ORGANIZATION_ID);
+        AMSWiremockUtils.stubOrganizationQuota(wireMockServer, Constants.DEFAULT_ORGANIZATION_ID,
+                Constants.DEFAULT_PRODUCT_ID.getValue(), Constants.DEFAULT_RESOURCE_NAME, 1);
         AccountManagementService accountManagementService = buildAccountManagementService(null);
         Uni<Boolean> response = accountManagementService.organizationHasAvailableQuota(Constants.DEFAULT_ACCOUNT_INFO,
                 Constants.DEFAULT_PRODUCT_ID.getValue(), Constants.DEFAULT_RESOURCE_NAME);
 
-        Assertions.assertThatThrownBy(() -> response.await().atMost(Duration.ofSeconds(5))).hasMessage("Not implemented yet.");
+        Assertions.assertThat(response.await().atMost(Duration.ofSeconds(5))).isTrue();
+    }
+
+    @Test
+    void organizationHasNoAvailableQuota() {
+        AMSWiremockUtils.stubGetOrganizationById(wireMockServer, Constants.DEFAULT_ORGANIZATION_ID);
+        AMSWiremockUtils.stubOrganizationQuota(wireMockServer, Constants.DEFAULT_ORGANIZATION_ID,
+                Constants.DEFAULT_PRODUCT_ID.getValue(), Constants.DEFAULT_RESOURCE_NAME, 0);
+        AccountManagementService accountManagementService = buildAccountManagementService(null);
+        Uni<Boolean> response = accountManagementService.organizationHasAvailableQuota(Constants.DEFAULT_ACCOUNT_INFO,
+                Constants.DEFAULT_PRODUCT_ID.getValue(), Constants.DEFAULT_RESOURCE_NAME);
+
+        Assertions.assertThat(response.await().atMost(Duration.ofSeconds(5))).isFalse();
+    }
+
+    @Test
+    void organizationHasNoProductInQuota() {
+        AMSWiremockUtils.stubGetOrganizationById(wireMockServer, Constants.DEFAULT_ORGANIZATION_ID);
+        AMSWiremockUtils.stubOrganizationQuota(wireMockServer, Constants.DEFAULT_ORGANIZATION_ID, "not_your_product",
+                Constants.DEFAULT_RESOURCE_NAME, 1);
+        AccountManagementService accountManagementService = buildAccountManagementService(null);
+        Uni<Boolean> response = accountManagementService.organizationHasAvailableQuota(Constants.DEFAULT_ACCOUNT_INFO,
+                Constants.DEFAULT_PRODUCT_ID.getValue(), Constants.DEFAULT_RESOURCE_NAME);
+
+        Assertions.assertThat(response.await().atMost(Duration.ofSeconds(5))).isFalse();
+    }
+
+    @Test
+    void organizationHasNoResourceInQuota() {
+        AMSWiremockUtils.stubGetOrganizationById(wireMockServer, Constants.DEFAULT_ORGANIZATION_ID);
+        AMSWiremockUtils.stubOrganizationQuota(wireMockServer, Constants.DEFAULT_ORGANIZATION_ID,
+                Constants.DEFAULT_PRODUCT_ID.getValue(), "not_your_resource", 1);
+        AccountManagementService accountManagementService = buildAccountManagementService(null);
+        Uni<Boolean> response = accountManagementService.organizationHasAvailableQuota(Constants.DEFAULT_ACCOUNT_INFO,
+                Constants.DEFAULT_PRODUCT_ID.getValue(), Constants.DEFAULT_RESOURCE_NAME);
+
+        Assertions.assertThat(response.await().atMost(Duration.ofSeconds(5))).isFalse();
+    }
+
+    @Test
+    void organizationHasQuotaNotExisting() {
+        AMSWiremockUtils.stubGetOrganizationByIdNotFound(wireMockServer, Constants.DEFAULT_ORGANIZATION_ID);
+        AccountManagementService accountManagementService = buildAccountManagementService(null);
+        Uni<Boolean> response = accountManagementService.organizationHasAvailableQuota(Constants.DEFAULT_ACCOUNT_INFO,
+                Constants.DEFAULT_PRODUCT_ID.getValue(), Constants.DEFAULT_RESOURCE_NAME);
+
+        Assertions.assertThatThrownBy(() -> response.await().atMost(Duration.ofSeconds(5))).isInstanceOf(ApiException.class);
     }
 
     private AccountManagementService buildAccountManagementService(TokenProvider tokenProvider) {

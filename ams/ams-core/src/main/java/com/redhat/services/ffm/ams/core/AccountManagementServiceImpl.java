@@ -4,6 +4,8 @@ import java.util.Collections;
 
 import com.redhat.services.ffm.ams.client.api.DefaultApi;
 import com.redhat.services.ffm.ams.client.models.ClusterAuthorizationRequest;
+import com.redhat.services.ffm.ams.client.models.QuotaCost;
+import com.redhat.services.ffm.ams.client.models.RelatedResource;
 import com.redhat.services.ffm.ams.client.models.ReservedResource;
 import com.redhat.services.ffm.ams.client.models.TermsReview;
 import com.redhat.services.ffm.ams.client.models.TermsReviewResponse;
@@ -48,8 +50,29 @@ class AccountManagementServiceImpl implements AccountManagementService {
     }
 
     @Override
-    public Uni<Boolean> organizationHasAvailableQuota(AccountInfo accountInfo, String productId, String resourceName) {
-        return Uni.createFrom().failure(new RuntimeException("Not implemented yet."));
+    public Uni<Boolean> organizationHasAvailableQuota(AccountInfo accountInfo, String product, String resourceName) {
+        return Uni.createFrom()
+                .completionStage(defaultApi.apiAccountsMgmtV1OrganizationsIdGet(accountInfo.getOrganizationId(), false, false))
+                .onItem()
+                .transformToUni(
+                        x -> Uni.createFrom().completionStage(defaultApi.apiAccountsMgmtV1QuotaCostGet(x.getId(), true, false)))
+                .onItem()
+                .transformToUni(x -> Uni.createFrom().item(
+                        x.getItems()
+                                .stream()
+                                .anyMatch(y -> checkProductAndAllowedQuota(y, product, resourceName))));
+    }
+
+    private boolean checkProductAndAllowedQuota(QuotaCost quotaCost, String product, String resourceName) {
+        if (quotaCost.getAllowed() > 0 && quotaCost.getRelatedResources() != null
+                && !quotaCost.getRelatedResources().isEmpty()) {
+            for (RelatedResource relatedResource : quotaCost.getRelatedResources()) {
+                if (product.equals(relatedResource.getProduct()) && resourceName.equals(relatedResource.getResourceName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private ClusterAuthorizationRequest buildClusterAuthorizationRequest(CreateResourceRequest createResourceRequest) {

@@ -14,6 +14,8 @@ public class Constants {
     public static final String TERMS_PATH = "/api/authorizations/v1/terms_review";
     public static final String CLUSTER_AUTHORIZATION_PATH = "/api/accounts_mgmt/v1/cluster_authorizations";
     public static final String SUBSCRIPTIONS_PATH = "/api/accounts_mgmt/v1/subscriptions";
+    public static final String ORGANIZATIONS_PATH = "/api/accounts_mgmt/v1/organizations";
+    public static final String QUOTA_COST_PATH = "/api/accounts_mgmt/v1/quota_cost";
 
     // Tests constants
     public static final ClusterAuthorizationRequest.ProductIdEnum DEFAULT_PRODUCT_ID = ClusterAuthorizationRequest.ProductIdEnum.OCP;
