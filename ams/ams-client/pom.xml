@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
     <artifactId>ams</artifactId>
-    <groupId>com.redhat.services.ffm</groupId>
+    <groupId>dev.bf2.ffm</groupId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
@@ -57,7 +57,7 @@
     </dependency>
 
     <dependency>
-      <groupId>com.redhat.services.ffm</groupId>
+      <groupId>dev.bf2.ffm</groupId>
       <artifactId>ams-client-generator</artifactId>
       <scope>compile</scope>
     </dependency>
