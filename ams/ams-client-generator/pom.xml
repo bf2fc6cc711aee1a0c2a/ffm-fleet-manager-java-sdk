@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
     <artifactId>ams</artifactId>
-    <groupId>com.redhat.services.ffm</groupId>
+    <groupId>dev.bf2.ffm</groupId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
@@ -89,11 +89,11 @@
                     <projectVersion>${project.version}</projectVersion>
                     <projectLicenseName>Apache V2</projectLicenseName>
                     <sortParamsByRequiredFlag>true</sortParamsByRequiredFlag>
-                    <modelPackage>com.redhat.services.ffm.ams.client.models</modelPackage>
-                    <apiPackage>com.redhat.services.ffm.ams.client.api</apiPackage>
-                    <invokerPackage>com.redhat.services.ffm.ams.client</invokerPackage>
+                    <modelPackage>dev.bf2.ffm.ams.client.models</modelPackage>
+                    <apiPackage>dev.bf2.ffm.ams.client.api</apiPackage>
+                    <invokerPackage>dev.bf2.ffm.ams.client</invokerPackage>
                     <ensureUniqueParams>true</ensureUniqueParams>
-                    <groupId>com.redhat.services.ffm</groupId>
+                    <groupId>dev.bf2.ffm</groupId>
                     <artifactId>ams-client</artifactId>
                     <artifactVersion>${project.version}</artifactVersion>
                     <sourceFolder>src/main/java</sourceFolder>

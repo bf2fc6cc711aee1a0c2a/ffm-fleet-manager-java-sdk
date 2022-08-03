@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
-    <groupId>com.redhat.services.ffm</groupId>
+    <groupId>dev.bf2.ffm</groupId>
     <artifactId>factorized-fleet-manager</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
@@ -17,72 +17,72 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.redhat.services.ffm</groupId>
+        <groupId>dev.bf2.ffm</groupId>
         <artifactId>ams-client</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.redhat.services.ffm</groupId>
+        <groupId>dev.bf2.ffm</groupId>
         <artifactId>ams-client</artifactId>
         <version>${project.version}</version>
         <classifier>sources</classifier>
       </dependency>
       <dependency>
-        <groupId>com.redhat.services.ffm</groupId>
+        <groupId>dev.bf2.ffm</groupId>
         <artifactId>ams-client</artifactId>
         <version>${project.version}</version>
         <classifier>javadoc</classifier>
       </dependency>
 
       <dependency>
-        <groupId>com.redhat.services.ffm</groupId>
+        <groupId>dev.bf2.ffm</groupId>
         <artifactId>ams-client-generator</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.redhat.services.ffm</groupId>
+        <groupId>dev.bf2.ffm</groupId>
         <artifactId>ams-client-generator</artifactId>
         <version>${project.version}</version>
         <classifier>sources</classifier>
       </dependency>
       <dependency>
-        <groupId>com.redhat.services.ffm</groupId>
+        <groupId>dev.bf2.ffm</groupId>
         <artifactId>ams-client-generator</artifactId>
         <version>${project.version}</version>
         <classifier>javadoc</classifier>
       </dependency>
 
       <dependency>
-        <groupId>com.redhat.services.ffm</groupId>
+        <groupId>dev.bf2.ffm</groupId>
         <artifactId>ams-core</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.redhat.services.ffm</groupId>
+        <groupId>dev.bf2.ffm</groupId>
         <artifactId>ams-core</artifactId>
         <version>${project.version}</version>
         <classifier>sources</classifier>
       </dependency>
       <dependency>
-        <groupId>com.redhat.services.ffm</groupId>
+        <groupId>dev.bf2.ffm</groupId>
         <artifactId>ams-core</artifactId>
         <version>${project.version}</version>
         <classifier>javadoc</classifier>
       </dependency>
 
       <dependency>
-        <groupId>com.redhat.services.ffm</groupId>
+        <groupId>dev.bf2.ffm</groupId>
         <artifactId>utils</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.redhat.services.ffm</groupId>
+        <groupId>dev.bf2.ffm</groupId>
         <artifactId>utils</artifactId>
         <version>${project.version}</version>
         <classifier>sources</classifier>
       </dependency>
       <dependency>
-        <groupId>com.redhat.services.ffm</groupId>
+        <groupId>dev.bf2.ffm</groupId>
         <artifactId>utils</artifactId>
         <version>${project.version}</version>
         <classifier>javadoc</classifier>
