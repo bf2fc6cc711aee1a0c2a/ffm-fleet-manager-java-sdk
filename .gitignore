@@ -28,3 +28,8 @@ target/
 *.iml
 **/.idea
 .cache/
+
+#Eclipse
+.project
+.settings/
+.classpath
