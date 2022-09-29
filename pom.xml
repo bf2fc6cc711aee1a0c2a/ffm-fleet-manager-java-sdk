@@ -9,6 +9,7 @@
 
   <name>Factorized Fleet Manager</name>
   <description>Parent module for factorized fleet manager</description>
+  <url>https://github.com/bf2fc6cc711aee1a0c2a/ffm-fleet-manager-java-sdk</url>
 
   <inceptionYear>2022</inceptionYear>
   <organization>
@@ -23,6 +24,35 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+
+  <developers>
+    <developer>
+      <id>MAS</id>
+      <name>MAS Community</name>
+      <organization>MAS</organization>
+      <organizationUrl>https://github.com/bf2fc6cc711aee1a0c2a</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm child.scm.connection.inherit.append.path="false"
+    child.scm.developerConnection.inherit.append.path="false"
+    child.scm.url.inherit.append.path="false">
+    <url>https://github.com/bf2fc6cc711aee1a0c2a/ffm-fleet-manager-java-sdk</url>
+    <connection>scm:git:git@github.com:bf2fc6cc711aee1a0c2a/ffm-fleet-manager-java-sdk.git</connection>
+    <developerConnection>scm:git:git@github.com:bf2fc6cc711aee1a0c2a/ffm-fleet-manager-java-sdk.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
