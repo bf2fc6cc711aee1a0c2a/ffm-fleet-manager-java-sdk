@@ -1,5 +1,10 @@
 name: Snapshot release to Maven central
 on:
+  # When a release is ready - create a new tag to release.
+  push:
+    tags:
+      - '*'
+  # Run manually to release a new snapshot from a branch
   workflow_dispatch:
 jobs:
   publish:
