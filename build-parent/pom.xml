@@ -41,8 +41,6 @@
     <restrict-imports.plugin.version>1.4.0</restrict-imports.plugin.version>
     <javadoc.plugin.version>3.4.1</javadoc.plugin.version>
     <source.plugin.version>3.1.0</source.plugin.version>
-    <gpg.plugin.version>3.0.1</gpg.plugin.version>
-    <nexus.staging.plugin.version>1.6.13</nexus.staging.plugin.version>
     <google.code.findbugs.version>3.0.2</google.code.findbugs.version>
     <com.github.tomakehurst.wiremock.version>2.30.1</com.github.tomakehurst.wiremock.version>
     <swagger-annotations.version>1.5.8</swagger-annotations.version>
@@ -57,7 +55,6 @@
     <!-- Skip release related plugins by default -->
     <maven.javadoc.skip>true</maven.javadoc.skip>
     <maven.source.skip>true</maven.source.skip>
-    <gpg.skip>true</gpg.skip>
   </properties>
 
   <dependencyManagement>
@@ -332,37 +329,6 @@
             </execution>
           </executions>
         </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-gpg-plugin</artifactId>
-          <version>${gpg.plugin.version}</version>
-          <executions>
-            <execution>
-              <id>sign-artifacts</id>
-              <phase>verify</phase>
-              <goals>
-                <goal>sign</goal>
-              </goals>
-              <configuration>
-                <gpgArguments>
-                  <arg>--pinentry-mode</arg>
-                  <arg>loopback</arg>
-                </gpgArguments>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.sonatype.plugins</groupId>
-          <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>${nexus.staging.plugin.version}</version>
-          <extensions>true</extensions>
-          <configuration>
-            <serverId>ossrh</serverId>
-            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-            <autoReleaseAfterClose>false</autoReleaseAfterClose>
-          </configuration>
-        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -386,14 +352,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-      </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-gpg-plugin</artifactId>
-        </plugin>
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
@@ -439,7 +397,6 @@
         <skipTests>true</skipTests>
         <maven.javadoc.skip>false</maven.javadoc.skip>
         <maven.source.skip>false</maven.source.skip>
-        <gpg.skip>false</gpg.skip>
       </properties>
     </profile>
   </profiles>
